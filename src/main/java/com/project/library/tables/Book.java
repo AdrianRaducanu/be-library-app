@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import java.util.Set;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 
 
@@ -23,7 +25,11 @@ public class Book {
             strategy = SEQUENCE,
             generator = "book_sequence"
     )
-    private Long id;
+    @Column(
+            unique=true,
+            nullable=false
+    )
+    private Long idBook;
 
     @Column(
             nullable = false,
@@ -57,13 +63,48 @@ public class Book {
     )
     private Boolean isAvailable;
 
+    @Column(
+            columnDefinition = "FLOAT"
+    )
+    private Float avgStar;
 
-    public Long getId() {
-        return id;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "rentedBy", referencedColumnName = "idUsers")
+    private Users users;
+
+    @OneToMany(mappedBy = "book")
+    private Set<Review> reviews;
+
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "idBook=" + idBook +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", category='" + category + '\'' +
+                ", img_paths='" + img_paths + '\'' +
+                ", image='" + image + '\'' +
+                ", isAvailable=" + isAvailable +
+                ", avgStar=" + avgStar +
+                ", users=" + users +
+                '}';
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public Long getIdBook() {
+        return idBook;
+    }
+
+    public void setIdBook(Long idBook) {
+        this.idBook = idBook;
     }
 
     public String getTitle() {
@@ -114,16 +155,11 @@ public class Book {
         isAvailable = available;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", category='" + category + '\'' +
-                ", img_paths='" + img_paths + '\'' +
-                ", image='" + image + '\'' +
-                ", isAvailable=" + isAvailable +
-                '}';
+    public Float getAvgStar() {
+        return avgStar;
+    }
+
+    public void setAvgStar(Float avgStar) {
+        this.avgStar = avgStar;
     }
 }

@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import java.util.Set;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity(name = "Users")
@@ -20,6 +22,10 @@ public class Users {
     @GeneratedValue(
             strategy = SEQUENCE,
             generator = "users_sequence"
+    )
+    @Column(
+            unique=true,
+            nullable=false
     )
     private Long idUsers;
 
@@ -41,6 +47,12 @@ public class Users {
             unique = true
     )
     private String email;
+
+    @OneToOne(mappedBy = "users")
+    private Book book;
+
+    @OneToMany(mappedBy = "users")
+    private Set<Review> reviews;
 
     public Long getIdUsers() {
         return idUsers;
