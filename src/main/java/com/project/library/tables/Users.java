@@ -21,6 +21,10 @@ public class Users {
     )
     private Long idUsers;
 
+    @OneToOne(mappedBy = "users")
+    private Borrow borrow;
+
+
     @Column(
             nullable = false,
             columnDefinition = "TEXT"
@@ -39,9 +43,6 @@ public class Users {
             unique = true
     )
     private String email;
-
-    @OneToOne(mappedBy = "users")
-    private Book book;
 
     @OneToMany(mappedBy = "users")
     private Set<Review> reviews;
@@ -77,4 +78,5 @@ public class Users {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }
