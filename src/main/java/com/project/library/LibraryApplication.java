@@ -13,7 +13,7 @@ public class LibraryApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LibraryApplication.class, args);
 	}
-
+/*
 	@Bean
 	CommandLineRunner commandLineRunner(BookRepo bookRepo){
 		return args -> {
@@ -24,6 +24,8 @@ public class LibraryApplication {
 
 	}
 
+
+ */
 
 
 }
