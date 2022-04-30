@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import static javax.persistence.GenerationType.SEQUENCE;
@@ -16,6 +17,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public class Book {
 
     @Id
+
     @SequenceGenerator(
             name = "book_sequence",
             sequenceName = "book_sequence",
@@ -24,10 +26,6 @@ public class Book {
     @GeneratedValue(
             strategy = SEQUENCE,
             generator = "book_sequence"
-    )
-    @Column(
-            unique=true,
-            nullable=false
     )
     private Long idBook;
 
@@ -41,6 +39,11 @@ public class Book {
             columnDefinition = "TEXT"
     )
     private String author;
+
+    @Column(
+            columnDefinition = "TEXT"
+    )
+    private String description;
 
     @Column(
             nullable = false,
@@ -64,12 +67,23 @@ public class Book {
     private Boolean isAvailable;
 
     @Column(
-            columnDefinition = "FLOAT"
+            columnDefinition = "DATE"
+    )
+    private LocalDateTime borrowDate;
+
+    @Column(
+            columnDefinition = "DATE"
+    )
+    private LocalDateTime dueDate;
+
+    @Column(
+            columnDefinition = "FLOAT",
+            nullable = false
     )
     private Float avgStar;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "rentedBy", referencedColumnName = "idUsers")
+    @JoinColumn(name = "borrowedBy", referencedColumnName = "idUsers")
     private Users users;
 
     @OneToMany(mappedBy = "book")
@@ -161,5 +175,29 @@ public class Book {
 
     public void setAvgStar(Float avgStar) {
         this.avgStar = avgStar;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDateTime getBorrowDate() {
+        return borrowDate;
+    }
+
+    public void setBorrowDate(LocalDateTime borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
+    public LocalDateTime getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDateTime dueDate) {
+        this.dueDate = dueDate;
     }
 }

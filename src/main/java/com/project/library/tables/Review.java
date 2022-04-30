@@ -12,15 +12,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @AllArgsConstructor
 public class Review {
     @Id
-    @SequenceGenerator(
-            name = "review_sequence",
-            sequenceName = "review_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = SEQUENCE,
-            generator = "review_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idReview;
 
     @Column(
