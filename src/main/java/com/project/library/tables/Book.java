@@ -56,7 +56,7 @@ public class Book {
     @Column(
             columnDefinition = "TEXT"
     )
-    private String img_paths;
+    private String imgPath;
 
     @Column(
             columnDefinition = "TEXT"
@@ -77,6 +77,91 @@ public class Book {
     @OneToMany(mappedBy = "book")
     private Set<Review> reviews;
 
+    public Long getIdBook() {
+        return idBook;
+    }
 
+    public void setIdBook(Long idBook) {
+        this.idBook = idBook;
+    }
 
+    public Borrow getBorrow() {
+        return borrow;
+    }
+
+    public void setBorrow(Borrow borrow) {
+        this.borrow = borrow;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Boolean getAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(Boolean available) {
+        isAvailable = available;
+    }
+
+    public Float getAvgStar() {
+        return avgStar;
+    }
+
+    public void setAvgStar(Float avgStar) {
+        this.avgStar = avgStar;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
 }
