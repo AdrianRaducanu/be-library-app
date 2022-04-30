@@ -1,6 +1,8 @@
 package com.project.library.tables;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -12,6 +14,8 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @Entity(name = "Users")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Data
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,6 +47,13 @@ public class Users {
             unique = true
     )
     private String email;
+
+    @Column(
+            nullable = false,
+            columnDefinition = "TEXT",
+            unique = true
+    )
+    private String phone;
 
     @OneToMany(mappedBy = "users")
     private Set<Review> reviews;
