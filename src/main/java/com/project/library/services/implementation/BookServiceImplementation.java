@@ -20,18 +20,14 @@ public class BookServiceImplementation implements BookService {
 
     private final BookRepo bookRepo;
     @Override
-    public Book create(String title, String author, String category, String description, String imgPath, String image) {
-        Book newBook = new Book();
-        newBook.setAvgStar(0F);
-        newBook.setCategory(category);
-        newBook.setTitle(title);
-        newBook.setAvailable(Boolean.TRUE);
-        newBook.setDescription(description);
-        newBook.setImgPath(imgPath);
-        newBook.setImage(image);
-        newBook.setAuthor(author);
-        log.info("New book created: {}", title);
-        return bookRepo.save(newBook);
+    public Book createNewBook(Book book) {
+
+        return bookRepo.save(book);
+    }
+    @Override
+    public Collection<Book> getAllBooks(){
+        log.info("All books ve been fetched");
+        return bookRepo.findAll();
     }
 
     @Override
@@ -47,17 +43,24 @@ public class BookServiceImplementation implements BookService {
     }
 
     @Override
-    public Book get(Long id) {
-        return null;
+    public Book getBookById(Long id) {
+        log.info("Fetching book with id {}",id);
+        return bookRepo.findBookByIdBook(id);
     }
 
     @Override
-    public Book update(Book book) {
-        return null;
+    public Book updateBookById(Book book) {
+        log.info("Updated the book with title {}", book.getTitle());
+        return bookRepo.save(book);
     }
 
     @Override
-    public Boolean delete(Long id) {
-        return null;
+    public void deleteBookById(Long id) {
+        log.info("Updated the book with id {}", id);
+        boolean exists = bookRepo.existsById(id);
+        if(!exists){
+            throw new IllegalStateException("Book with id "+ id + " doesnt exists");
+        }
+        bookRepo.deleteById(id);
     }
 }

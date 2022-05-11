@@ -69,10 +69,9 @@ public class Book {
     private Boolean isAvailable;
 
     @Column(
-            columnDefinition = "FLOAT",
-            nullable = false
+            columnDefinition = "FLOAT"
     )
-    private Float avgStar;
+    private Float avgStar = 0F;
 
     @OneToMany(mappedBy = "book")
     private Set<Review> reviews;
