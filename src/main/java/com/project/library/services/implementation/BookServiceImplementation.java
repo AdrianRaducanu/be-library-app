@@ -63,4 +63,30 @@ public class BookServiceImplementation implements BookService {
         }
         bookRepo.deleteById(id);
     }
+
+    @Override
+    public Collection<Book> findBooksByAuthorOrTitle(String titleOrAuthor){
+        log.info("Merge cautarea dupa autor sau titlu");
+        return bookRepo.findBooksByAuthorOrTitle(titleOrAuthor);
+    }
+
+    @Override
+    public Collection<Book> findBooksByAuthor(String author){
+        return bookRepo.findBooksByAuthor(author);
+    }
+
+    @Override
+    public Collection<Book> findBookByIsAvailable(Boolean isAvailable){
+        return bookRepo.findBookByIsAvailable(isAvailable);
+    }
+
+    @Override
+    public Collection<Book> findBookByCategoryIn(Collection<String> categories){
+        return bookRepo.findBookByCategoryIn(categories);
+    }
+
+    @Override
+    public Collection<Book> findAllByOrderByAvgStarDesc(){
+        return bookRepo.findAllByOrderByAvgStarDesc();
+    }
 }
