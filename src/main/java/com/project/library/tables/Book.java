@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-import java.time.LocalDateTime;
 import java.util.Set;
 
 import static javax.persistence.GenerationType.SEQUENCE;
@@ -56,7 +55,7 @@ public class Book {
     @Column(
             columnDefinition = "TEXT"
     )
-    private String imgPath;
+    private String imgPaths;
 
     @Column(
             columnDefinition = "TEXT"
@@ -124,12 +123,12 @@ public class Book {
         this.category = category;
     }
 
-    public String getImgPath() {
-        return imgPath;
+    public String getImgPaths() {
+        return imgPaths;
     }
 
-    public void setImgPath(String imgPath) {
-        this.imgPath = imgPath;
+    public void setImgPaths(String imgPaths) {
+        this.imgPaths = imgPaths;
     }
 
     public String getImage() {

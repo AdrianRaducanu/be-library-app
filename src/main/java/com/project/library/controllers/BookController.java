@@ -13,6 +13,7 @@ import java.util.Collection;
 public class BookController {
     private final BookServiceImplementation bookServiceImplementation;
 
+    @CrossOrigin(origins = "http://localhost:4200/")
 //Get request
     @GetMapping(path = "/getAllBooks")
     @ResponseBody
