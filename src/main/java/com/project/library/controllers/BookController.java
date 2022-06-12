@@ -12,15 +12,16 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class BookController {
     private final BookServiceImplementation bookServiceImplementation;
+    //Get request
 
     @CrossOrigin(origins = "http://localhost:4200/")
-//Get request
     @GetMapping(path = "/getAllBooks")
     @ResponseBody
     public Collection<Book> getAllBooks(){
         return bookServiceImplementation.getAllBooks();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping(path = "/getBookWithTitleOrAuthorLike")
     @ResponseBody
     public Collection<Book> getBookWithTitleOrAuthorLike(@RequestParam String titleOrAuthor){
