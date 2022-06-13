@@ -1,5 +1,6 @@
 package com.project.library.tables;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -26,10 +27,12 @@ public class Borrow {
     )
     private Long idBorrow;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idUsers", referencedColumnName = "idUsers")
     private Users users;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idBook", referencedColumnName = "idBook")
     private Book book;

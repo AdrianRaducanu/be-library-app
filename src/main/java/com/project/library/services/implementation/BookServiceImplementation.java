@@ -3,6 +3,7 @@ package com.project.library.services.implementation;
 import com.project.library.repos.BookRepo;
 import com.project.library.services.BookService;
 import com.project.library.tables.Book;
+import com.project.library.tables.Review;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -89,5 +92,13 @@ public class BookServiceImplementation implements BookService {
     @Override
     public Collection<Book> findAllByOrderByAvgStarDesc(){
         return (bookRepo.findAllByOrderByAvgStarDesc()).stream().limit(5).collect(Collectors.toList());
+    }
+
+    @Override
+    public Collection<Review> findReviewsByBookId(Long idBook){
+        Book carte = bookRepo.findBookByIdBook(idBook);
+        Set<Review> revs = new HashSet<>();
+        revs.addAll(carte.getReviews());
+        return revs;
     }
 }

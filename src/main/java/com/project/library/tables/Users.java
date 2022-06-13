@@ -1,5 +1,6 @@
 package com.project.library.tables;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class Users {
     )
     private Long idUsers;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "users")
     private Borrow borrow;
 
@@ -55,6 +57,7 @@ public class Users {
     )
     private String phone;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "users")
     private Set<Review> reviews;
 

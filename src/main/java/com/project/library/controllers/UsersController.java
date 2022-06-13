@@ -15,7 +15,6 @@ public class UsersController {
 
     private final UsersServiceImplementation usersServiceImplementation;
 
-    @CrossOrigin(origins = "http://localhost:4200/")
 
     @GetMapping(path = "/getAllUsers")
     @ResponseBody

@@ -2,6 +2,7 @@ package com.project.library.controllers;
 
 import com.project.library.services.implementation.BookServiceImplementation;
 import com.project.library.tables.Book;
+import com.project.library.tables.Review;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +35,13 @@ public class BookController {
     @ResponseBody
     public Collection<Book> getBooksSortedByAvgStar(){
         return bookServiceImplementation.findAllByOrderByAvgStarDesc();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200/")
+    @GetMapping(path="/getReviewsByBookId")
+    @ResponseBody
+    public Collection<Review> getReviewsByBookId(Long idBook){
+        return bookServiceImplementation.findReviewsByBookId(idBook);
     }
 
 

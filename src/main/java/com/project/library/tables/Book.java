@@ -1,5 +1,6 @@
 package com.project.library.tables;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -27,6 +28,7 @@ public class Book {
     )
     private Long idBook;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "book")
     private Borrow borrow;
 
@@ -72,6 +74,7 @@ public class Book {
     )
     private Float avgStar = 0F;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "book")
     private Set<Review> reviews;
 

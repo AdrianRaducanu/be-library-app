@@ -1,6 +1,7 @@
 package com.project.library.services;
 
 import com.project.library.tables.Book;
+import com.project.library.tables.Review;
 
 import java.util.Collection;
 
@@ -14,6 +15,7 @@ public interface BookService {
     Collection<Book> findAllByOrderByAvgStarDesc();
     Collection<Book> bookPaginationWithPageAsNoOfPagesAndLimitAsElementsOnPage(int pages, int limit);
     Collection<Book> bookPaginationWithPageAsNoOfPagesAndLimitAsElementsOnPageSortedByFiled(int pages, int limit, String field, Boolean DESC);
+    Collection<Review> findReviewsByBookId(Long idBook);
     Book getBookById(Long id);
     Book updateBookById(Book book);
     void deleteBookById(Long id);

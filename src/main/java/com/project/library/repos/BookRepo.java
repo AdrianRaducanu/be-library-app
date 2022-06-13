@@ -1,6 +1,7 @@
 package com.project.library.repos;
 
 import com.project.library.tables.Book;
+import com.project.library.tables.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -24,6 +25,8 @@ public interface BookRepo extends JpaRepository<Book, Long> {
 
     @Query("SELECT b FROM Book b WHERE b.author = :author")
     List<Book> findBooksByAuthor(String author);
+
+
 
 
 }

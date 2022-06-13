@@ -14,7 +14,6 @@ import java.util.Collection;
 @Service
 @Transactional
 @Slf4j
-
 public class UsersServiceImplementation implements UsersService {
 
     private final UsersRepo usersRepo;
