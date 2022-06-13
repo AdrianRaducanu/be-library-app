@@ -57,6 +57,12 @@ public class Users {
     )
     private String phone;
 
+    @Column(
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+    private String password;
+
     @JsonIgnore
     @OneToMany(mappedBy = "users")
     private Set<Review> reviews;
@@ -92,5 +98,37 @@ public class Users {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password){
+        this.password = password;
+    }
+
+    public Borrow getBorrow() {
+        return borrow;
+    }
+
+    public void setBorrow(Borrow borrow) {
+        this.borrow = borrow;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
+
 
 }
