@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -87,6 +88,6 @@ public class BookServiceImplementation implements BookService {
 
     @Override
     public Collection<Book> findAllByOrderByAvgStarDesc(){
-        return bookRepo.findAllByOrderByAvgStarDesc();
+        return (bookRepo.findAllByOrderByAvgStarDesc()).stream().limit(5).collect(Collectors.toList());
     }
 }

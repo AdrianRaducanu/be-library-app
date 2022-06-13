@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping("/book")
 @RequiredArgsConstructor
@@ -27,6 +28,15 @@ public class BookController {
     public Collection<Book> getBookWithTitleOrAuthorLike(@RequestParam String titleOrAuthor){
         return bookServiceImplementation.findBooksByAuthorOrTitle(titleOrAuthor);
     }
+
+    @CrossOrigin(origins = "http://localhost:4200/")
+    @GetMapping(path="/getBooksSortedByAvgStar")
+    @ResponseBody
+    public Collection<Book> getBooksSortedByAvgStar(){
+        return bookServiceImplementation.findAllByOrderByAvgStarDesc();
+    }
+
+
     @GetMapping(path = "/getBookWithAuthorEquals")
     @ResponseBody
     public Collection<Book> getBookWithAuthorEquals(@RequestParam String author){
@@ -45,11 +55,7 @@ public class BookController {
         return bookServiceImplementation.findBookByCategoryIn(categories);
     }
 
-    @GetMapping(path="/getBooksSortedByAvgStar")
-    @ResponseBody
-    public Collection<Book> getBooksSortedByAvgStar(){
-        return bookServiceImplementation.findAllByOrderByAvgStarDesc();
-    }
+
 //POST request
     @PostMapping(path = "/createNewBook")
     public void createNewBook(@RequestBody Book book){
