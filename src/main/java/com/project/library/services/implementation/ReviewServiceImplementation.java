@@ -26,9 +26,16 @@ public class ReviewServiceImplementation implements ReviewService {
     }
 
     @Override
+    public Collection<Review> findAllByUser(Long idUser) {
+        return reviewRepo.findAllByUsers_IdUsers(idUser);
+    }
+
+    @Override
     public Users findUserByReviewId(Long idReview){
         Review rev = reviewRepo.findReviewByIdReview(idReview);
         return rev.getUsers();
     }
+
+
 
 }

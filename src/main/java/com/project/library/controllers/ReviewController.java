@@ -25,6 +25,13 @@ public class ReviewController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200/")
+    @GetMapping(path = "/getReviewsByIdUser")
+    @ResponseBody
+    public Collection<Review> findAllByUser(@RequestParam Long idUser){
+        return reviewServiceImplementation.findAllByUser(idUser);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping(path = "/getUserByReviewId")
     @ResponseBody
     public Users findUserByReviewId(@RequestParam Long idReview){

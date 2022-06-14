@@ -6,6 +6,7 @@ import com.project.library.services.implementation.UsersServiceImplementation;
 import com.project.library.tables.Users;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -36,12 +37,34 @@ public class UsersController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200/")
-    @PostMapping(path = "/saveUser")
+    @GetMapping(path = "/getUserByEmail")
     @ResponseBody
-    public void createNewUser(@RequestBody Users users){
-        users.setPassword(encoder.encodePass(users.getPassword()));
-        usersRepo.save(users);
+    public Users authUser(@RequestParam String email){
+        return usersRepo.findUsersByEmail(email);
     }
 
 
+    @CrossOrigin(origins = "http://localhost:4200/")
+    @PostMapping(path = "/saveUser")
+    @ResponseBody
+    public Users createNewUser(@RequestBody Users users){
+        users.setPassword(encoder.encodePass(users.getPassword()));
+        usersRepo.save(users);
+        return users;
+    }
+/*
+    @CrossOrigin(origins = "http://localhost:4200/")
+    @PostMapping(path = "/saveUser")
+    @ResponseBody
+    public Users createNewUser(@RequestParam String email, @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String phone){
+        Users u = new Users();
+        u.setPassword(encoder.encodePass(password));
+        u.setLastName(lastName);
+        u.setFirstName(firstName);
+        u.setPhone(phone);
+        u.setEmail(email);
+        usersRepo.save(u);
+        return u;
+    }
+*/
 }

@@ -11,4 +11,5 @@ public interface ReviewService {
 
     Collection<Review> findAllByBook(Long idBook);
     Users findUserByReviewId(Long idReview);
+    Collection<Review> findAllByUser(Long idUser);
 }
