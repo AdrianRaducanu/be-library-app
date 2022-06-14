@@ -46,4 +46,45 @@ public class Borrow {
             columnDefinition = "DATE"
     )
     private LocalDateTime dueDate;
+
+    public Long getIdBorrow() {
+        return idBorrow;
+    }
+
+    public void setIdBorrow(Long idBorrow) {
+        this.idBorrow = idBorrow;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public LocalDateTime getBorrowDate() {
+        return borrowDate;
+    }
+
+    public void setBorrowDate(LocalDateTime borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
+    public LocalDateTime getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDateTime dueDate) {
+        this.dueDate = dueDate;
+    }
+
 }

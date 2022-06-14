@@ -28,6 +28,7 @@ public class BookController {
     @ResponseBody
     public Book getBookByIdBook(@RequestParam Long idBook){return bookServiceImplementation.getBookById(idBook);}
 
+
     @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping(path = "/getBookWithTitleOrAuthorLike")
     @ResponseBody
