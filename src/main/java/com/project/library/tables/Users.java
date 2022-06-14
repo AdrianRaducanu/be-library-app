@@ -27,7 +27,7 @@ public class Users {
     private Long idUsers;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "users")
+    @OneToOne(mappedBy = "users", cascade = CascadeType.DETACH)
     private Borrow borrow;
 
 

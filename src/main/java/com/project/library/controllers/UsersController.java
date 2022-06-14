@@ -52,19 +52,5 @@ public class UsersController {
         usersRepo.save(users);
         return users;
     }
-/*
-    @CrossOrigin(origins = "http://localhost:4200/")
-    @PostMapping(path = "/saveUser")
-    @ResponseBody
-    public Users createNewUser(@RequestParam String email, @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String phone){
-        Users u = new Users();
-        u.setPassword(encoder.encodePass(password));
-        u.setLastName(lastName);
-        u.setFirstName(firstName);
-        u.setPhone(phone);
-        u.setEmail(email);
-        usersRepo.save(u);
-        return u;
-    }
-*/
+
 }

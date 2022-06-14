@@ -28,12 +28,12 @@ public class Borrow {
     private Long idBorrow;
 
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "idUsers", referencedColumnName = "idUsers")
     private Users users;
 
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "idBook", referencedColumnName = "idBook")
     private Book book;
 

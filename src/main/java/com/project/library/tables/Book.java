@@ -29,7 +29,7 @@ public class Book {
     private Long idBook;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "book")
+    @OneToOne(mappedBy = "book", cascade = CascadeType.DETACH)
     private Borrow borrow;
 
     @Column(

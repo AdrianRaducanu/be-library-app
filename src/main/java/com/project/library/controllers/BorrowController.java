@@ -83,4 +83,11 @@ public class BorrowController {
         Borrow b = borrowRepo.findBorrowByIdBorrow(idBorrow);
         return b.getBook();
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @DeleteMapping(path = "/deleteByIdBorrow")
+    @ResponseBody
+    public void deleteBorrow(@RequestParam Long idBorrow){
+        borrowRepo.deleteById(idBorrow);
+    }
 }

@@ -8,4 +8,6 @@ import java.util.Collection;
 public interface BorrowService {
     Borrow createNewBorrow(Borrow borrow);
     Collection<Borrow> getAllBorrow();
+
+
 }
