@@ -1,6 +1,9 @@
 package com.project.library.controllers;
 
+import com.project.library.repos.ReviewRepo;
+import com.project.library.services.implementation.BookServiceImplementation;
 import com.project.library.services.implementation.ReviewServiceImplementation;
+import com.project.library.services.implementation.UsersServiceImplementation;
 import com.project.library.tables.Book;
 import com.project.library.tables.Review;
 import com.project.library.tables.Users;
@@ -16,6 +19,9 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class ReviewController {
     private final ReviewServiceImplementation reviewServiceImplementation;
+    private final ReviewRepo reviewRepo;
+    private final BookServiceImplementation bookServiceImplementation;
+    private final UsersServiceImplementation usersServiceImplementation;
 
     @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping(path = "/getReviewsByIdBook")
@@ -37,4 +43,29 @@ public class ReviewController {
     public Users findUserByReviewId(@RequestParam Long idReview){
         return reviewServiceImplementation.findUserByReviewId(idReview);
     }
+
+    @CrossOrigin(origins = "http://localhost:4200/")
+    @GetMapping(path = "/getBookByReviewId")
+    @ResponseBody
+    public Book findBookByReviewId(@RequestParam Long idReview){
+        return reviewServiceImplementation.findBookByReviewId(idReview);
+    }
+
+    @CrossOrigin( origins = "http://localhost:4200")
+    @PostMapping(path = "/saveReview")
+    @ResponseBody
+    public void createReview(@RequestParam Long idBook, @RequestParam Long idUser, @RequestBody Review review){
+        Book bookForReview = bookServiceImplementation.getBookById(idBook);
+        Users userForReview = usersServiceImplementation.findUserById(idUser);
+        review.setBook(bookForReview);
+        review.setUsers(userForReview);
+        reviewRepo.save(review);
+    }
+
+    @GetMapping(path = "/allReview")
+    @ResponseBody
+    public Collection<Review> findAll(){
+        return reviewRepo.findAll();
+    }
+
 }

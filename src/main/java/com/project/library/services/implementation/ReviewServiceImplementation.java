@@ -2,6 +2,7 @@ package com.project.library.services.implementation;
 
 import com.project.library.repos.ReviewRepo;
 import com.project.library.services.ReviewService;
+import com.project.library.tables.Book;
 import com.project.library.tables.Review;
 import com.project.library.tables.Users;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,12 @@ public class ReviewServiceImplementation implements ReviewService {
     public Users findUserByReviewId(Long idReview){
         Review rev = reviewRepo.findReviewByIdReview(idReview);
         return rev.getUsers();
+    }
+
+    @Override
+    public Book findBookByReviewId(Long idReview){
+        Review rev = reviewRepo.findReviewByIdReview(idReview);
+        return rev.getBook();
     }
 
 
