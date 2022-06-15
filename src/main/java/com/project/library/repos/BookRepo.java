@@ -14,7 +14,7 @@ public interface BookRepo extends JpaRepository<Book, Long> {
 
     Book findBookByIdBook(Long idBook);
     List<Book> findBookByCategoryIn(Collection<String> categories);
-
+    List<Book> findBooksByCategory(String category);
 
     List<Book> findBookByIsAvailable(Boolean isAvailable);
     List<Book> findAllByOrderByAvgStarDesc();

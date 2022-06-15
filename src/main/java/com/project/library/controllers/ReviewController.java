@@ -1,5 +1,6 @@
 package com.project.library.controllers;
 
+import com.project.library.repos.BookRepo;
 import com.project.library.repos.ReviewRepo;
 import com.project.library.services.implementation.BookServiceImplementation;
 import com.project.library.services.implementation.ReviewServiceImplementation;
@@ -22,6 +23,7 @@ public class ReviewController {
     private final ReviewRepo reviewRepo;
     private final BookServiceImplementation bookServiceImplementation;
     private final UsersServiceImplementation usersServiceImplementation;
+    private final BookRepo bookRepo;
 
     @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping(path = "/getReviewsByIdBook")
@@ -60,6 +62,13 @@ public class ReviewController {
         review.setBook(bookForReview);
         review.setUsers(userForReview);
         reviewRepo.save(review);
+        Collection<Review> revs = reviewServiceImplementation.findAllByBook(idBook);
+        Float sum = 0F;
+        for(Review r : revs){
+            sum += r.getStars();
+        }
+        bookForReview.setAvgStar(sum/revs.size());
+        bookRepo.save(bookForReview);
     }
 
     @GetMapping(path = "/allReview")

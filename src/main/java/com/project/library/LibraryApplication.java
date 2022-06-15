@@ -20,17 +20,5 @@ public class LibraryApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LibraryApplication.class, args);
 	}
-/*
-	@Bean
-	CommandLineRunner commandLineRunner(BookRepo bookRepo, UsersRepo usersRepo, ReviewRepo reviewRepo){
-		return args -> {
 
-			List<Book> b1 = bookRepo.findBookByAuthor("Adam Kay");
-			Book b2 = bookRepo.findBookByIdBook(3L);
-			System.out.println(b2);
-
-		};
-
-	}
- */
 }

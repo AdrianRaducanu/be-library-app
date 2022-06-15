@@ -1,5 +1,6 @@
 package com.project.library.controllers;
 
+import com.project.library.repos.BookRepo;
 import com.project.library.services.implementation.BookServiceImplementation;
 import com.project.library.tables.Book;
 import com.project.library.tables.Review;
@@ -7,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Random;
 
 @CrossOrigin(origins = "http://localhost:4200/")
 @RestController
@@ -14,6 +17,7 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class BookController {
     private final BookServiceImplementation bookServiceImplementation;
+    private final BookRepo bookRepo;
     //Get request
 
     @CrossOrigin(origins = "http://localhost:4200/")
@@ -21,6 +25,16 @@ public class BookController {
     @ResponseBody
     public Collection<Book> getAllBooks(){
         return bookServiceImplementation.getAllBooks();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200/")
+    @GetMapping(path = "/getRandomBook")
+    @ResponseBody
+    public Book getRandomBook(@RequestParam String category){
+        List<Book> listBooks = bookRepo.findBooksByCategory(category);
+        Random random = new Random();
+        return listBooks.get(random.nextInt(listBooks.size()));
+
     }
 
     @CrossOrigin(origins = "http://localhost:4200/")

@@ -2,6 +2,7 @@ package com.project.library.services.implementation;
 
 import com.project.library.repos.UsersRepo;
 import com.project.library.services.UsersService;
+import com.project.library.tables.Review;
 import com.project.library.tables.Users;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -17,6 +19,10 @@ import java.util.Collection;
 public class UsersServiceImplementation implements UsersService {
 
     private final UsersRepo usersRepo;
+    private final ReviewServiceImplementation reviewServiceImplementation;
+    private final BookServiceImplementation bookServiceImplementation;
+
+
     @Override
     public Users createNewUser(Users users) {
         return usersRepo.save(users);
@@ -41,4 +47,6 @@ public class UsersServiceImplementation implements UsersService {
     public Users findUserById(Long id) {
         return usersRepo.findUsersByIdUsers(id);
     }
+
+
 }
