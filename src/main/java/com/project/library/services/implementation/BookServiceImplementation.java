@@ -97,8 +97,8 @@ public class BookServiceImplementation implements BookService {
     @Override
     public Collection<Review> findReviewsByBookId(Long idBook){
         Book carte = bookRepo.findBookByIdBook(idBook);
-        Set<Review> revs = new HashSet<>();
-        revs.addAll(carte.getReviews());
+        Set<Review> revs = new HashSet<>(carte.getReviews());
         return revs;
     }
+
 }

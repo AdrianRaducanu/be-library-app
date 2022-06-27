@@ -39,7 +39,7 @@ public class UsersController {
     @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping(path = "/getUserByEmail")
     @ResponseBody
-    public Users authUser(@RequestParam String email){
+    public Users getUserByEmail(@RequestParam String email){
         return usersRepo.findUsersByEmail(email);
     }
 

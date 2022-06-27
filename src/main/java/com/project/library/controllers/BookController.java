@@ -7,9 +7,7 @@ import com.project.library.tables.Review;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:4200/")
 @RestController
@@ -31,7 +29,13 @@ public class BookController {
     @GetMapping(path = "/getRandomBook")
     @ResponseBody
     public Book getRandomBook(@RequestParam String category){
-        List<Book> listBooks = bookRepo.findBooksByCategory(category);
+        List<Book> listBooks = new ArrayList<Book>();
+        if(Objects.equals(category, "")){
+            listBooks = bookRepo.findAll();
+        }else{
+            listBooks = bookRepo.findBooksByCategory(category);
+        }
+
         Random random = new Random();
         return listBooks.get(random.nextInt(listBooks.size()));
 

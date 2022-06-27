@@ -67,7 +67,8 @@ public class ReviewController {
         for(Review r : revs){
             sum += r.getStars();
         }
-        bookForReview.setAvgStar(sum/revs.size());
+        float returnStar = (float)Math.round(sum/revs.size());
+        bookForReview.setAvgStar(returnStar);
         bookRepo.save(bookForReview);
     }
 

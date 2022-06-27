@@ -38,7 +38,7 @@ public class BorrowController {
     public void createNewBorrow(@RequestParam Long idBook, @RequestParam Long idUser){
         Borrow b = new Borrow();
         b.setBorrowDate(LocalDateTime.now());
-        b.setDueDate(LocalDateTime.of(b.getBorrowDate().getYear(),b.getBorrowDate().getMonth(), b.getBorrowDate().getDayOfMonth() + 10, b.getBorrowDate().getHour(), b.getBorrowDate().getMinute()) );
+        b.setDueDate(LocalDateTime.of(b.getBorrowDate().getYear(), b.getBorrowDate().getMonth(), b.getBorrowDate().getDayOfMonth() + 4, b.getBorrowDate().getHour(), b.getBorrowDate().getMinute()) );
         b.setBook(bookServiceImplementation.getBookById(idBook));
         b.setUsers(usersServiceImplementation.findUserById(idUser));
         borrowServiceImplementation.createNewBorrow(b);
